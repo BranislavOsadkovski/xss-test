@@ -735,7 +735,4 @@ const ie = (() => {
         iframe.allowFullscreen = true;
         iframe.allow = "autoplay";
         iframe.src = ie;
-        document.body.appendChild(iframe);
-    }
-
-})();
+        document.body.appendChild(iframe)}})();
