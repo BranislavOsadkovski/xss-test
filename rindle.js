@@ -726,21 +726,16 @@ const ie = (() => {
     return Q.sanitize(finalUrl);
 })();
 
-if (ie) {
-    console.log("URL param rindleUrl:", ee("rindleUrl"));
-console.log("Processed URL object:", t);
-console.log("Sanitized URL:", ie);
-    const iframe = document.createElement("iframe");
-    iframe.id = "rindle-frame";
-    iframe.scrolling = "no";
-    iframe.width = "100%";
-    iframe.height = "100%";
-    iframe.allowFullscreen = true;
-    iframe.allow = "autoplay";
-    iframe.src = ie;
-    document.body.appendChild(iframe);
-}
+    if (ie) {
+        const iframe = document.createElement("iframe");
+        iframe.id = "rindle-frame";
+        iframe.scrolling = "no";
+        iframe.width = "100%";
+        iframe.height = "100%";
+        iframe.allowFullscreen = true;
+        iframe.allow = "autoplay";
+        iframe.src = ie;
+        document.body.appendChild(iframe);
+    }
 
-)();
-//# sourceMappingURL=rindle.3d5b30df.js.map
-
+})();
