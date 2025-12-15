@@ -727,6 +727,9 @@ const ie = (() => {
 })();
 
 if (ie) {
+    console.log("URL param rindleUrl:", ee("rindleUrl"));
+console.log("Processed URL object:", t);
+console.log("Sanitized URL:", ie);
     const iframe = document.createElement("iframe");
     iframe.id = "rindle-frame";
     iframe.scrolling = "no";
