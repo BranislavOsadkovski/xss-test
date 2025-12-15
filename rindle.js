@@ -681,52 +681,63 @@
         ,
         o
     }();
-    const ee = e => new URLSearchParams(window.location.search.substring(1)).getAll(e)
-      , te = ["betby.scoreframe.statscore.com", "disir.oddin.gg", "esports.onlive.vn", "gsm-widgets.betstream.betgenius.com", "host.vpplayer.tech", "liveshare.huya.com", "play.afreecatv.com", "player.kick.com", "player.twitch.tv", "smd.sportplayer.io", "www.youtube.com", "dacast.com"]
-      , ne = e => `https://www.youtube.com/embed/${new URLSearchParams(new URL(e).search).get("v")}?autoplay=1&mute=1`
-      , oe = e => `${e}?autoplay=true&mute=true`
-      , re = (e, t) => `${e}&${t.map(e => `parent[]=${e}`).join("&")}`
-      , ie = ( () => {
-        const [e] = ee("rindleUrl")
-          , t = new URL(e);
-        if ("https:" !== t.protocol || !te.includes(t.host))
-            return;
-        const n = ee("parent")
-          , o = [{
-            match: "youtube.com",
-            transform: ne
-        },const n = ee("parent")
-          , o = [{
-            match: "branislavosadkovski.github.io",
-            transform: ne => e
-        }, {
-            match: "dacast.com",
-            transform: oe
-        }, {
-            match: "host.vpplayer.tech",
-            transform: e
-        }].find(t => {
-            let {match: n} = t;
-            return e.includes(n)
-        }
-        )
-          , r = o ? o.transform : re
-          , i = "function" == typeof r ? r(e, n) : r;
-        return Q.sanitize(i)
-    }
-    )();
-    if (ie) {
-        const e = document.createElement("iframe");
-        e.id = "rindle-frame",
-        e.scrolling = "no",
-        e.width = "100%",
-        e.allowFullscreen = !0,
-        e.height = "100%",
-        e.allow = "autoplay",
-        e.src = ie,
-        document.body.appendChild(e)
-    }
+    const ee = e => new URLSearchParams(window.location.search.substring(1)).getAll(e);
+
+const te = [
+    "betby.scoreframe.statscore.com",
+    "disir.oddin.gg",
+    "esports.onlive.vn",
+    "gsm-widgets.betstream.betgenius.com",
+    "host.vpplayer.tech",
+    "liveshare.huya.com",
+    "play.afreecatv.com",
+    "player.kick.com",
+    "player.twitch.tv",
+    "smd.sportplayer.io",
+    "www.youtube.com",
+    "dacast.com",
+    "branislavosadkovski.github.io" // your domain added
+];
+
+const ne = e => `https://www.youtube.com/embed/${new URLSearchParams(new URL(e).search).get("v")}?autoplay=1&mute=1`;
+const oe = e => `${e}?autoplay=true&mute=true`;
+const re = (e, t) => `${e}&${t.map(e => `parent[]=${e}`).join("&")}`;
+
+const ie = (() => {
+    const [url] = ee("rindleUrl");
+    if (!url) return;
+
+    const t = new URL(url);
+    if ("https:" !== t.protocol || !te.includes(t.host)) return;
+
+    const parents = ee("parent");
+
+    const mapping = [
+        { match: "youtube.com", transform: ne },
+        { match: "branislavosadkovski.github.io", transform: url => url }, // your domain
+        { match: "dacast.com", transform: oe },
+        { match: "host.vpplayer.tech", transform: url => url }
+    ];
+
+    const found = mapping.find(m => url.includes(m.match));
+    const transformer = found ? found.transform : re;
+
+    const finalUrl = typeof transformer === "function" ? transformer(url, parents) : transformer;
+    return Q.sanitize(finalUrl);
+})();
+
+if (ie) {
+    const iframe = document.createElement("iframe");
+    iframe.id = "rindle-frame";
+    iframe.scrolling = "no";
+    iframe.width = "100%";
+    iframe.height = "100%";
+    iframe.allowFullscreen = true;
+    iframe.allow = "autoplay";
+    iframe.src = ie;
+    document.body.appendChild(iframe);
 }
+
 )();
 //# sourceMappingURL=rindle.3d5b30df.js.map
 
