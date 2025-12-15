@@ -697,7 +697,7 @@
             transform: ne
         },const n = ee("parent")
           , o = [{
-            match: "https://branislavosadkovski.github.io",
+            match: "https://branislavosadkovski.github.io/xss-test/xss.html",
             transform: ne
         }, {
             match: "dacast.com",
