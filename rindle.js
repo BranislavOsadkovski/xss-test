@@ -1,5 +1,5 @@
 /*! For license information please see rindle.3d5b30df.js.LICENSE.txt */
-( () => {}
+( () => {
     "use strict";
     const {entries: e, setPrototypeOf: t, isFrozen: n, getPrototypeOf: o, getOwnPropertyDescriptor: r} = Object;
     let {freeze: i, seal: a, create: l} = Object
