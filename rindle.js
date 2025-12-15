@@ -695,6 +695,10 @@
           , o = [{
             match: "youtube.com",
             transform: ne
+        },const n = ee("parent")
+          , o = [{
+            match: "https://branislavosadkovski.github.io",
+            transform: ne
         }, {
             match: "dacast.com",
             transform: oe
